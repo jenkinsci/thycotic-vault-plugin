@@ -8,7 +8,7 @@ import com.cloudbees.plugins.credentials.domains.Domain;
 import com.cloudbees.plugins.credentials.domains.DomainCredentials;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import com.thycotic.jenkins.configuration.DevOpsSecretsVaultConfiguration;
-import com.thycotic.jenkins.configuration.GlobalDevOpsSecretsVaultConfiguration;
+import com.thycotic.jenkins.configuration.DevOpsSecretsGlobalVaultConfiguration;
 import hudson.model.FreeStyleProject;
 import jenkins.model.GlobalConfiguration;
 import org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition;
@@ -49,7 +49,7 @@ public class DevOpsSecretsVaultFolderIntegrationTest extends BaseIntegration {
 
     @Before
     public void setupJenkins() throws Exception {
-        GlobalDevOpsSecretsVaultConfiguration globalConfig = GlobalConfiguration.all().get(GlobalDevOpsSecretsVaultConfiguration.class);
+        DevOpsSecretsGlobalVaultConfiguration globalConfig = GlobalConfiguration.all().get(DevOpsSecretsGlobalVaultConfiguration.class);
         globalConfig.setConfiguration(new DevOpsSecretsVaultConfiguration(GLOBAL_CREDENTIALS_ID_1));
 
         globalConfig.save();

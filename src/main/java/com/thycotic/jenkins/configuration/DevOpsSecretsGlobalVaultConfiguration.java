@@ -10,19 +10,19 @@ import org.kohsuke.stapler.StaplerRequest;
 import javax.annotation.Nonnull;
 
 @Extension
-public class GlobalDevOpsSecretsVaultConfiguration extends GlobalConfiguration {
+public class DevOpsSecretsGlobalVaultConfiguration extends GlobalConfiguration {
     private DevOpsSecretsVaultConfiguration configuration;
 
     @Nonnull
-    public static GlobalDevOpsSecretsVaultConfiguration get() {
-        GlobalDevOpsSecretsVaultConfiguration instance = GlobalConfiguration.all().get(GlobalDevOpsSecretsVaultConfiguration.class);
+    public static DevOpsSecretsGlobalVaultConfiguration get() {
+        DevOpsSecretsGlobalVaultConfiguration instance = GlobalConfiguration.all().get(DevOpsSecretsGlobalVaultConfiguration.class);
         if (instance == null) {
             throw new IllegalStateException();
         }
         return instance;
     }
 
-    public GlobalDevOpsSecretsVaultConfiguration() {
+    public DevOpsSecretsGlobalVaultConfiguration() {
         load();
     }
 
@@ -48,7 +48,7 @@ public class GlobalDevOpsSecretsVaultConfiguration extends GlobalConfiguration {
         @Nonnull
         @Override
         public DevOpsSecretsVaultConfiguration forJob(@Nonnull Item job) {
-            return GlobalDevOpsSecretsVaultConfiguration.get().getConfiguration();
+            return DevOpsSecretsGlobalVaultConfiguration.get().getConfiguration();
         }
     }
 }
