@@ -42,7 +42,7 @@ public class GlobalDevOpsSecretsVaultConfiguration extends GlobalConfiguration {
         save();
     }
 
-    @Extension(ordinal = 0)
+    @Extension
     public static class ForJob extends DevOpsSecretsVaultConfigResolver {
 
         @Nonnull

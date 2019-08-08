@@ -29,15 +29,12 @@ import java.io.PrintStream;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 
 public class ThycoticVaultBuildWrapper extends SimpleBuildWrapper {
 
     private List<ThycoticSecret> thycoticVaultSecrets;
     private DevOpsSecretsVaultConfiguration configuration;
-
-    private static final Logger LOGGER = Logger.getLogger("com.thycotic.jenkins.ThycoticVaultBuildWrapper");
 
     @DataBoundConstructor
     public ThycoticVaultBuildWrapper(@CheckForNull List<ThycoticSecret> thycoticVaultSecrets) {
@@ -83,7 +80,7 @@ public class ThycoticVaultBuildWrapper extends SimpleBuildWrapper {
         ThycoticVaultCredentials credential = CredentialsMatchers.firstOrNull(credentials, new IdMatcher(id));
 
         if (credential == null) {
-            throw new RuntimeException("The credential id was not configured - please specify the credentials to use.");
+            throw new RuntimeException("No credential exists that matches the configured credential id.");
         }
 
         return credential;
@@ -102,7 +99,7 @@ public class ThycoticVaultBuildWrapper extends SimpleBuildWrapper {
                 }
             }
         } catch (DevOpsSecretsVaultException e) {
-            throw new RuntimeException("Exception calling DevOps Secrets Vault Service", e);
+            throw new RuntimeException("Exception calling DevOps Secrets Vault API", e);
         }
     }
 
