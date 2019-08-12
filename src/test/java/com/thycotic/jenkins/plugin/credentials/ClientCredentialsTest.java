@@ -17,12 +17,12 @@ public class ClientCredentialsTest {
     @Test
     public void testConstructor() {
         Secret secret = Secret.fromString("clientSecret");
-        ClientCredentials creds = new ClientCredentials(CredentialsScope.USER, "abc", "test", "tenant", "clientId", secret, "devbambe.com");
+        ClientCredentials creds = new ClientCredentials(CredentialsScope.USER, "abc", "test", "tenant", "clientId", secret, "fakevaulttest.com");
 
         assertThat(creds.getTenant()).isEqualTo("tenant");
         assertThat(creds.getClientId()).isEqualTo("clientId");
         assertThat(creds.getClientSecret()).isEqualTo(secret);
         assertThat(creds.getVaultClient()).isNotNull();
-        assertThat(creds.getBaseURL()).isEqualTo("devbambe.com");
+        assertThat(creds.getBaseURL()).isEqualTo("fakevaulttest.com");
     }
 }

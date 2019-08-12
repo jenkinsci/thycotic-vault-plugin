@@ -11,6 +11,10 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
+
+/**
+ * Client Credentials class used for authenticating to DevOps Secrets Vault to retrieve secrets at build execution time.
+ */
 public class ClientCredentials extends BaseStandardCredentials implements ThycoticVaultCredentials {
 
     private final @Nonnull
@@ -24,8 +28,6 @@ public class ClientCredentials extends BaseStandardCredentials implements Thycot
 
     private final @Nonnull
     String baseURL;
-
-    private String urlOverride;
 
     @DataBoundConstructor
     public ClientCredentials(@CheckForNull CredentialsScope scope, @CheckForNull String id, @CheckForNull String description, @Nonnull String tenant, @Nonnull String clientId, @Nonnull Secret clientSecret, @Nonnull String baseURL) {
@@ -62,7 +64,7 @@ public class ClientCredentials extends BaseStandardCredentials implements Thycot
 
         @Override
         public String getDisplayName() {
-            return "Thycotic Vault Client Credentials";
+            return "Thycotic DevOps Vault Client Credentials";
         }
 
     }

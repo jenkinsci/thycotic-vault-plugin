@@ -6,7 +6,7 @@ import com.cloudbees.plugins.credentials.domains.Domain;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import com.thycotic.jenkins.ThycoticVaultBuildWrapper;
 import com.thycotic.jenkins.configuration.DevOpsSecretsVaultConfiguration;
-import com.thycotic.jenkins.configuration.GlobalDevOpsSecretsVaultConfiguration;
+import com.thycotic.jenkins.configuration.DevOpsSecretsGlobalVaultConfiguration;
 import com.thycotic.jenkins.model.ThycoticSecret;
 import com.thycotic.jenkins.model.ThycoticSecretValue;
 import hudson.Functions;
@@ -50,7 +50,7 @@ public class DevOpsSecretsVaultIntegrationTest extends BaseIntegration {
 
     @Before
     public void init() throws Exception {
-        GlobalDevOpsSecretsVaultConfiguration globalConfig = GlobalConfiguration.all().get(GlobalDevOpsSecretsVaultConfiguration.class);
+        DevOpsSecretsGlobalVaultConfiguration globalConfig = GlobalConfiguration.all().get(DevOpsSecretsGlobalVaultConfiguration.class);
         globalConfig.setConfiguration(new DevOpsSecretsVaultConfiguration(GLOBAL_CREDENTIALS_ID_1));
 
         globalConfig.save();

@@ -23,15 +23,12 @@ public class DevOpsSecretsVaultConfiguration extends AbstractDescribableImpl<Dev
 
     private String thycoticCredentialId;
 
-
     public DevOpsSecretsVaultConfiguration() {
-        // no args constructor
     }
 
-    private DevOpsSecretsVaultConfiguration(DevOpsSecretsVaultConfiguration config) {
-        this.thycoticCredentialId = config.getThycoticCredentialId();
-    }
-
+    /**
+     * Constructor bound to config.jelly to create a new Configuration based on the auth credential to the vault
+     */
     @DataBoundConstructor
     public DevOpsSecretsVaultConfiguration(String thycoticCredentialId) {
         this.thycoticCredentialId = thycoticCredentialId;
@@ -46,11 +43,18 @@ public class DevOpsSecretsVaultConfiguration extends AbstractDescribableImpl<Dev
         this.thycoticCredentialId = thycoticCredentialId;
     }
 
+    /**
+     * Create a new config and pull the parent auth credential if the current config does not have
+     * the auth credential set
+     *
+     * @param parent parent DevOpsSecretsVaultConfiguration
+     * @return new DevOpsSecretsVaultConfiguration
+     */
     public DevOpsSecretsVaultConfiguration mergeWithParent(DevOpsSecretsVaultConfiguration parent) {
         if (parent == null) {
             return this;
         }
-        DevOpsSecretsVaultConfiguration result = new DevOpsSecretsVaultConfiguration(this);
+        DevOpsSecretsVaultConfiguration result = new DevOpsSecretsVaultConfiguration(this.getThycoticCredentialId());
         if (StringUtils.isBlank(result.getThycoticCredentialId())) {
             result.setThycoticCredentialId(parent.getThycoticCredentialId());
         }
@@ -64,10 +68,10 @@ public class DevOpsSecretsVaultConfiguration extends AbstractDescribableImpl<Dev
             return "Thycotic DevOps Secrets Vault Configuration";
         }
 
-
+        /**
+         * Used to populate dropdown in config.jelly for choosing credential to auth to the tenants vault.
+         */
         public ListBoxModel doFillThycoticCredentialIdItems(@AncestorInPath Item item, @QueryParameter String uri) {
-            // This is needed for folders: credentials bound to a folder are
-            // realized through domain requirements
             List<DomainRequirement> domainRequirements = URIRequirementBuilder.fromUri(uri).build();
             return new StandardListBoxModel().includeEmptyValue().includeAs(ACL.SYSTEM, item,
                     ThycoticVaultCredentials.class, domainRequirements);

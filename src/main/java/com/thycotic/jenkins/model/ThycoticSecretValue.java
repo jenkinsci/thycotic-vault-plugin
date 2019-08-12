@@ -28,7 +28,7 @@ public class ThycoticSecretValue extends AbstractDescribableImpl<ThycoticSecretV
 
         @Override
         public String getDisplayName() {
-            return "Thycotic ThycoticSecretValue";
+            return "Secret Environment Variable and Value";
         }
 
     }

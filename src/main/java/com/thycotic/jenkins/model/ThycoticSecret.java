@@ -31,8 +31,7 @@ public class ThycoticSecret extends AbstractDescribableImpl<ThycoticSecret> {
 
         @Override
         public String getDisplayName() {
-            return "Thycotic ThycoticSecret";
+            return "Secret";
         }
-
     }
 }
