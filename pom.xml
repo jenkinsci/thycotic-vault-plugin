@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.thycotic</groupId>
     <artifactId>thycotic-vault</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>hpi</packaging>
     <properties>
         <jenkins.version>2.60.3</jenkins.version>
@@ -37,9 +37,8 @@
 
     <scm>
         <connection>scm:git:git://github.com/jenkinsci/thycotic-vault-plugin.git</connection>
-
         <url>https://github.com/jenkinsci/thycotic-vault-plugin.git</url>
-      <tag>thycotic-vault-1.0.0</tag>
+      <tag>thycotic-vault-1.0.1</tag>
   </scm>
 
     <dependencies>
