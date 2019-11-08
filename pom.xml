@@ -36,8 +36,8 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/jenkinsci/thycotic-vault-plugin.git</connection>
-        <url>https://github.com/jenkinsci/thycotic-vault-plugin.git</url>
+        <connection>scm:git:git://github.com/thycotic/vault-jenkins.git</connection>
+        <url>https://github.com/thycotic/vault-jenkins.git</url>
       <tag>thycotic-vault-1.0.1</tag>
   </scm>
 
