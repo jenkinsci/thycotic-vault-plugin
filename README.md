@@ -1,20 +1,22 @@
 # DevOps Secrets Vault Jenkins Plugin
+
 This plugin allows access to the Thycotic Vault API to access secrets used in the build process.
 Use of the is plugin must be associated with a licensed version of the Thycotic Vault.
 
-### Usage
+## Usage
 
-Additional examples are given in the  [DevOps Secrets Vault documentation](https://docs.thycotic.com/dsv-extension-jenkins) 
+Additional examples are given in the  [DevOps Secrets Vault documentation](https://docs.thycotic.com/dsv-extension-jenkins)
 
 Usage in a pipeline script
-```
+
+```Groovy
 node {
-    // define the secret key value and the env variables the key matches the attribute name in the secret json. 
+    // define the secret key value and the env variables the key matches the attribute name in the secret json.
     // Only simple json types are supported for the secret value.
     def secretValues = [
         [$class: 'ThycoticSecretValue', key: 'password', envVar: 'secret']
     ]
-    
+
     // define the path to the secret stored in DevOps Secrets Vault
     def secrets = [
         [$class: 'ThycoticSecret', path: 'path/to/your/secret', secretValues: secretValues]
@@ -32,11 +34,13 @@ node {
 ```
 
 ## Limitations
+
 Currently this plugin only supports `json` formatted secrets within the vault. The secret data values must 
 be simple json types, complex types such as arrays are not currently supported.
 
 Supported by the plugin
-```
+
+```json
 {
     "id": "0a71c5c0-5198-4c17-b2e3-c9e8703ef03d",
     "path": "path:to:secret",
@@ -48,7 +52,8 @@ Supported by the plugin
 ```
 
 Not supported
-```
+
+```json
 {
     "id": "0a71c5c0-5198-4c17-b2e3-c9e8703ef03d",
     "path": "path:to:secret",
@@ -64,10 +69,12 @@ Not supported
 This plugin requires the use of Java 8 along with Maven 3.5+
 
 ### Helpful Commands
-- Create plugin - `mvn clean install`
-- Run tests - `mvn clean test`
-- Run Plugin Locally - `mvn hpi:run`
 
+* Create plugin - `mvn clean install`
+* Run tests - `mvn clean test`
+* Run Plugin Locally - `mvn hpi:run`
+  * Jenkins URL: <http://localhost:8080/jenkins/>
 
 ## Attribution
+
 This plugin was adapted from the [Vault plugin](https://github.com/jenkinsci/hashicorp-vault-plugin) originally authored by Peter Tierno.
